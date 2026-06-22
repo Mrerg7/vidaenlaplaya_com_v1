@@ -1,0 +1,30 @@
+---
+import { getEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import MeaningSection from '../components/MeaningSection.astro';
+import WhyPremiumSection from '../components/WhyPremiumSection.astro';
+import ApplicationsSection from '../components/ApplicationsSection.astro';
+import MarketContextSection from '../components/MarketContextSection.astro';
+import AcquisitionSection from '../components/AcquisitionSection.astro';
+import CTASection from '../components/CTASection.astro';
+import Footer from '../components/Footer.astro';
+
+const siteData = await getEntry('site', 'site');
+const heroImage = siteData?.data?.heroImage ?? 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/65d846be-d4fc-4c40-4f3a-dce3dbb5e700/public';
+---
+
+<BaseLayout>
+  <Header />
+  <main>
+    <Hero image={heroImage} />
+    <MeaningSection />
+    <WhyPremiumSection />
+    <ApplicationsSection />
+    <MarketContextSection />
+    <AcquisitionSection />
+    <CTASection />
+  </main>
+  <Footer />
+</BaseLayout>

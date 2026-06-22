@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-ocean-900 font-sans antialiased;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass {
+    @apply bg-white/70 backdrop-blur-xl border border-ocean-100/60;
+  }
+
+  /* Primary CTA button */
+  .cta-primary {
+    @apply bg-ocean-700 text-white font-semibold rounded-lg transition-all duration-300;
+  }
+  .cta-primary:hover {
+    @apply bg-ocean-800 shadow-lg shadow-ocean-500/20 -translate-y-0.5;
+  }
+
+  /* Secondary CTA button */
+  .cta-secondary {
+    @apply border border-ocean-300 text-ocean-700 font-semibold rounded-lg transition-all duration-300;
+  }
+  .cta-secondary:hover {
+    @apply border-ocean-500 bg-ocean-50;
+  }
+
+  /* Section accent line */
+  .accent-line {
+    @apply w-16 h-0.5 bg-gradient-to-r from-ocean-400 to-sand-400 mx-auto;
+  }
+
+  /* Subtle ocean gradient */
+  .ocean-gradient {
+    background: linear-gradient(180deg, #f0f7fa 0%, #ffffff 40%, #faf8f5 100%);
+  }
+
+  /* Gold accent */
+  .text-gold-accent {
+    @apply text-sand-600;
+  }
+}

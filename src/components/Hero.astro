@@ -1,0 +1,60 @@
+---
+export interface Props {
+  image: string;
+}
+
+const { image } = Astro.props;
+---
+
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden ocean-gradient pt-20">
+  <!-- Decorative background elements -->
+  <div class="absolute inset-0 opacity-[0.03] bg-[radial-gradient(circle_at_30%_40%,#3c91a8_0.5px,transparent_0.5px)] bg-[length:24px_24px]"></div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 py-20 text-center">
+    <!-- Domain badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-ocean-50 border border-ocean-200 text-ocean-700 text-sm font-medium mb-10">
+      <span class="w-2 h-2 rounded-full bg-ocean-500 animate-pulse"></span>
+      Premium Domain Available for Acquisition
+    </div>
+
+    <!-- Hero image -->
+    <div class="mb-12 max-w-3xl mx-auto">
+      <img
+        src={image}
+        alt="VidaEnLaPlaya.com — Beach life, coastal luxury, paradise living"
+        class="w-full h-auto rounded-2xl shadow-2xl shadow-ocean-900/10"
+        width="1200"
+        height="630"
+        loading="eager"
+        decoding="async"
+      />
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-ocean-900 leading-tight mb-6">
+      VidaEnLaPlaya<span class="text-ocean-600">.com</span>
+    </h1>
+
+    <p class="text-xl sm:text-2xl text-ocean-700/80 font-light max-w-2xl mx-auto leading-relaxed mb-4">
+      The rare, globally resonant domain that owns "Beach Life"
+    </p>
+
+    <p class="text-lg text-ocean-600/70 max-w-xl mx-auto leading-relaxed">
+      Two simple Spanish words. One unforgettable .com.<br />
+      An authentic expression of paradise, leisure, freedom, and the good life — now available for serious acquisition.
+    </p>
+
+    <!-- CTA -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="mailto:sales@desertrich.com" class="cta-primary px-8 py-4 text-lg">
+        Inquire About Acquisition
+      </a>
+      <a href="#meaning" class="cta-secondary px-8 py-4 text-lg">
+        Discover the Meaning
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+</section>

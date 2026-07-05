@@ -15,8 +15,8 @@ const {
   noindex = false,
 } = Astro.props;
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const siteUrl = 'https://vidaenlaplaya.com';
+const siteUrl = Astro.site?.href.replace(/\/$/, '') ?? 'https://vidaenlaplaya.com';
+const canonicalURL = new URL(Astro.url.pathname, `${siteUrl}/`).href;
 const siteName = 'VidaEnLaPlaya.com';
 
 const structuredData = {

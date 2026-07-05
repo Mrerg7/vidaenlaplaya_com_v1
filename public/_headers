@@ -12,5 +12,8 @@
 /index.html
   X-Robots-Tag: noindex
 
+/index.html/
+  X-Robots-Tag: noindex
+
 /404.html
   X-Robots-Tag: noindex

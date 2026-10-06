@@ -3,31 +3,82 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-white text-ocean-900 font-sans antialiased;
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+    color-scheme: light dark;
   }
+
+  body {
+    @apply bg-white text-ocean-900 font-sans antialiased dark:bg-abyss-950 dark:text-ocean-100;
+    overflow-x: hidden;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    /* 16px minimum: readable without zooming on mobile */
+    font-size: 16px;
+  }
+
+  p,
+  li {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 3px solid #3c91a8;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -100px;
+    z-index: 200;
+    background: #2e5261;
+    color: #fff;
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: 600;
+    transition: top 0.2s ease;
+  }
+  .skip-link:focus {
+    top: 1rem;
+  }
+
 }
 
 @layer components {
   /* Glass card effect */
   .glass {
-    @apply bg-white/70 backdrop-blur-xl border border-ocean-100/60;
+    @apply bg-white/70 backdrop-blur-xl border border-ocean-100/60 dark:bg-abyss-900/70 dark:border-ocean-900;
   }
 
-  /* Primary CTA button */
+  /* Primary CTA button — 48px minimum tap target */
   .cta-primary {
-    @apply bg-ocean-700 text-white font-semibold rounded-lg transition-all duration-300;
+    @apply inline-flex items-center justify-center text-center bg-ocean-700 text-white font-semibold rounded-xl transition-all duration-300 active:scale-[0.985] dark:bg-ocean-500 dark:text-abyss-950;
+    min-height: 48px;
   }
   .cta-primary:hover {
-    @apply bg-ocean-800 shadow-lg shadow-ocean-500/20 -translate-y-0.5;
+    @apply bg-ocean-800 shadow-lg shadow-ocean-500/25 -translate-y-0.5 dark:bg-ocean-400;
   }
 
   /* Secondary CTA button */
   .cta-secondary {
-    @apply border border-ocean-300 text-ocean-700 font-semibold rounded-lg transition-all duration-300;
+    @apply inline-flex items-center justify-center text-center border border-ocean-300 text-ocean-700 font-semibold rounded-xl transition-all duration-300 dark:border-ocean-700 dark:text-ocean-200;
+    min-height: 48px;
   }
   .cta-secondary:hover {
-    @apply border-ocean-500 bg-ocean-50;
+    @apply border-ocean-500 bg-ocean-50 dark:bg-abyss-900 dark:border-ocean-500;
+  }
+
+  /* Accent CTA (sand / gold — restrained, never spammy) */
+  .cta-accent {
+    @apply inline-flex items-center justify-center text-center bg-sand-400 hover:bg-sand-300 text-ocean-950 font-semibold rounded-xl transition-all duration-300 active:scale-[0.985];
+    min-height: 48px;
+  }
+  .cta-accent:hover {
+    @apply shadow-lg shadow-sand-500/40 -translate-y-0.5;
   }
 
   /* Section accent line */
@@ -35,13 +86,144 @@
     @apply w-16 h-0.5 bg-gradient-to-r from-ocean-400 to-sand-400 mx-auto;
   }
 
-  /* Subtle ocean gradient */
+  /* Subtle ocean gradient (light) — swapped in dark mode */
   .ocean-gradient {
     background: linear-gradient(180deg, #f0f7fa 0%, #ffffff 40%, #faf8f5 100%);
   }
+  .dark .ocean-gradient {
+    background: linear-gradient(180deg, #08161d 0%, #040e13 45%, #0d2029 100%);
+  }
 
-  /* Gold accent */
-  .text-gold-accent {
-    @apply text-sand-600;
+  /* Section heading */
+  .section-title {
+    @apply font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-ocean-900 leading-tight dark:text-white;
+  }
+
+  /* Small pill / badge */
+  .pill {
+    @apply inline-block bg-ocean-100 text-ocean-700 font-bold text-xs px-4 py-1.5 rounded-full tracking-[1.5px] dark:bg-ocean-900 dark:text-ocean-300;
+  }
+
+  /* Filter chips */
+  .chip {
+    @apply inline-flex items-center px-4 py-2 min-h-[44px] text-sm font-medium rounded-full border transition-all;
+  }
+  .chip-active {
+    @apply bg-ocean-800 text-white border-ocean-800 dark:bg-ocean-500 dark:text-abyss-950 dark:border-ocean-500;
+  }
+  .chip-idle {
+    @apply bg-white text-ocean-700 border-ocean-200 hover:border-ocean-400 dark:bg-abyss-900 dark:text-ocean-200 dark:border-ocean-800;
+  }
+
+  /* Input controls */
+  .field {
+    @apply w-full min-h-[48px] px-4 py-3 rounded-xl border border-ocean-200 bg-white text-ocean-900 text-base transition-colors dark:border-ocean-800 dark:bg-abyss-900 dark:text-ocean-100;
+  }
+  .field:focus {
+    @apply border-ocean-500 outline-none ring-2 ring-ocean-500/25;
+  }
+
+  /* Scroll-triggered fade-ins (JS adds .is-visible; no library).
+     Gated on .js so content is fully visible when JavaScript is unavailable. */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Staggered entrance for grid/list siblings (no inline styles required) */
+  .js .reveal:nth-child(2) {
+    transition-delay: 60ms;
+  }
+  .js .reveal:nth-child(3) {
+    transition-delay: 120ms;
+  }
+  .js .reveal:nth-child(4) {
+    transition-delay: 180ms;
+  }
+  .js .reveal:nth-child(5) {
+    transition-delay: 240ms;
+  }
+  .js .reveal:nth-child(6) {
+    transition-delay: 300ms;
+  }
+
+  /* Touch targets: never smaller than 48px on coarse pointers */
+  @media (pointer: coarse) {
+    a,
+    button {
+      min-height: 44px;
+    }
+    nav a,
+    nav button,
+    header a,
+    header button {
+      min-height: 48px;
+      min-width: 48px;
+    }
+  }
+}
+
+/* Markdown article styling (insights) */
+.prose-vida {
+  @apply text-ocean-800 dark:text-ocean-200 text-lg leading-relaxed;
+}
+.prose-vida > *:first-child {
+  margin-top: 0;
+}
+.prose-vida h2 {
+  @apply font-serif text-2xl sm:text-3xl font-bold text-ocean-900 dark:text-white mt-11 mb-4 leading-snug;
+}
+.prose-vida h3 {
+  @apply font-serif text-xl font-semibold text-ocean-900 dark:text-white mt-8 mb-3;
+}
+.prose-vida p {
+  @apply mb-5;
+}
+.prose-vida a {
+  @apply text-ocean-700 dark:text-ocean-300 font-medium underline underline-offset-4 decoration-ocean-300 hover:text-ocean-900 dark:hover:text-white;
+}
+.prose-vida strong {
+  @apply font-semibold text-ocean-900 dark:text-white;
+}
+.prose-vida ul,
+.prose-vida ol {
+  @apply mb-6 pl-6 space-y-2;
+}
+.prose-vida ul {
+  @apply list-disc;
+}
+.prose-vida ol {
+  @apply list-decimal;
+}
+.prose-vida li {
+  @apply pl-1;
+}
+.prose-vida blockquote {
+  @apply border-l-4 border-ocean-300 dark:border-ocean-700 pl-5 italic text-ocean-700 dark:text-ocean-300 my-7;
+}
+.prose-vida hr {
+  @apply border-ocean-200 dark:border-ocean-800 my-9;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
   }
 }

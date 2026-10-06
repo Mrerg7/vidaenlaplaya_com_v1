@@ -1,0 +1,53 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  pathname: string;
+  image?: string;
+  keywords?: string;
+  noindex?: boolean;
+}
+
+const {
+  title,
+  description,
+  pathname,
+  image = 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/7ad296d3-6138-4c1f-272c-4a560d04ea00/public',
+  keywords = 'buy .com domains, domain marketplace, VidaEnLaPlaya.com for sale, premium domain names, investment domains, beach life domain, Spanish domain for sale, brandable domain names',
+  noindex = false,
+} = Astro.props;
+
+const normalizedPath = pathname.endsWith('/') ? pathname : `${pathname}/`;
+const canonicalURL = new URL(normalizedPath, Astro.site);
+---
+
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+<meta name="keywords" content={keywords} />
+<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow, max-image-preview:large'} />
+<meta name="googlebot" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+<meta name="author" content="Desert Rich" />
+<meta name="rating" content="general" />
+<meta name="revisit-after" content="7 days" />
+
+<link rel="canonical" href={canonicalURL} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={image} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="VidaEnLaPlaya.com — premium beach life domain for sale" />
+<meta property="og:site_name" content="VidaEnLaPlaya.com" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={canonicalURL} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={image} />
+<meta name="twitter:image:alt" content="VidaEnLaPlaya.com — premium beach life domain for sale" />

@@ -1,38 +1,76 @@
-<section class="py-24 px-6 bg-ocean-50/50">
+---
+const stats = [
+  { value: '636M+', label: 'Total Spanish speakers worldwide' },
+  { value: '$100B+', label: 'Global beach tourism market annually' },
+  { value: '21', label: 'Spanish-speaking countries worldwide' },
+];
+
+const comparables = [
+  { name: 'VacationRentals.com', price: '$35,000,000', year: '2007', note: 'Acquired by HomeAway' },
+  { name: 'Voice.com', price: '$30,000,000', year: '2019', note: 'Announced in SEC filing' },
+  { name: 'Hotels.com', price: '$11,000,000', year: '2001', note: 'Travel category-defining .com' },
+  { name: 'Vacation.Rentals', price: '$500,300', year: '2018', note: 'Record new-TLD sale' },
+];
+---
+
+<section id="value" class="py-20 sm:py-24 px-4 sm:px-6 bg-ocean-50/60 dark:bg-abyss-900 scroll-mt-24">
   <div class="max-w-5xl mx-auto">
-    <div class="accent-line mb-8"></div>
-    <h2 class="font-serif text-4xl sm:text-5xl font-bold text-ocean-900 text-center mb-16">
-      Market Context Supporting Premium Valuation
-    </h2>
+    <div class="accent-line mb-8 reveal"></div>
+    <h2 class="section-title text-center mb-6 reveal">Market Context Supporting Premium Valuation</h2>
+    <p class="text-center text-ocean-600 dark:text-ocean-300 max-w-2xl mx-auto mb-14 reveal">
+      Where language, lifestyle, and luxury meet &mdash; the exact intersection this domain owns.
+    </p>
 
-    <div class="space-y-8 max-w-3xl mx-auto">
-      <p class="text-lg text-ocean-700/80 leading-relaxed">
-        The global beach tourism market is valued in the hundreds of billions annually and continues to grow steadily, driven by demand for experiential and coastal escapes. Broader coastal and maritime tourism represents an even larger economic force.
+    <div class="space-y-7 max-w-3xl mx-auto text-lg text-ocean-700 dark:text-ocean-200 leading-relaxed">
+      <p class="reveal">
+        The global beach tourism market is valued in the hundreds of billions annually and continues to grow steadily,
+        driven by demand for experiential and coastal escapes. Broader coastal and maritime tourism represents an even
+        larger economic force.
       </p>
-
-      <p class="text-lg text-ocean-700/80 leading-relaxed">
-        Spanish-speaking markets span Latin America, Spain, and a large, high-purchasing-power Hispanic population in the United States. Combined with universal aspirational appeal, VidaEnLaPlaya.com sits at the intersection of language, lifestyle, and luxury.
+      <p class="reveal">
+        Spanish-speaking markets span Latin America, Spain, and a large, high-purchasing-power Hispanic population in the
+        United States. Combined with universal aspirational appeal, VidaEnLaPlaya.com sits at the intersection of language,
+        lifestyle, and luxury.
       </p>
-
-      <p class="text-lg text-ocean-700/80 leading-relaxed">
-        Premium .com domains that are short, memorable, emotionally positive, and category-relevant routinely achieve mid-to-high five-figure (and often six-figure) valuations when they align with serious brand-building or investment strategies. This domain checks every box for a high-acquisition-price asset.
+      <p class="reveal">
+        Premium .com domains that are short, memorable, emotionally positive, and category-relevant routinely achieve
+        mid-to-high five-figure (and often six-figure) valuations when they align with serious brand-building or
+        investment strategies. This domain checks every box for a high-acquisition-price asset.
       </p>
     </div>
 
     <!-- Stats row -->
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-16">
-      <div class="glass rounded-xl p-8 text-center">
-        <div class="text-4xl font-serif font-bold text-ocean-700 mb-2">636M+</div>
-        <p class="text-ocean-600/70 text-sm">Total Spanish speakers worldwide</p>
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 sm:gap-6 mt-14">
+      {stats.map((s, i) => (
+        <div class="glass rounded-2xl p-7 text-center reveal">
+          <div class="text-4xl font-serif font-bold text-ocean-700 dark:text-ocean-300 mb-2">{s.value}</div>
+          <p class="text-ocean-600 dark:text-ocean-300 text-sm">{s.label}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Comparable public sales (social proof) -->
+    <div class="mt-16">
+      <h3 class="font-serif text-2xl sm:text-3xl font-bold text-ocean-900 dark:text-white text-center mb-3 reveal">
+        Public Comparable Domain Sales
+      </h3>
+      <p class="text-center text-sm text-ocean-600 dark:text-ocean-300 max-w-2xl mx-auto mb-8 reveal">
+        Category-defining descriptive names have historically transacted at serious prices. Most premium sales, however,
+        happen privately &mdash; the records below are the publicly announced exceptions.
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+        {comparables.map((c, i) => (
+          <div class="glass rounded-2xl p-5 text-center reveal">
+            <div class="font-semibold text-ocean-900 dark:text-white break-all">{c.name}</div>
+            <div class="font-serif text-2xl font-bold text-sand-600 dark:text-sand-400 mt-1">{c.price}</div>
+            <div class="text-xs text-ocean-600 dark:text-ocean-300 mt-1">{c.year} &middot; {c.note}</div>
+          </div>
+        ))}
       </div>
-      <div class="glass rounded-xl p-8 text-center">
-        <div class="text-4xl font-serif font-bold text-ocean-700 mb-2">$100B+</div>
-        <p class="text-ocean-600/70 text-sm">Global beach tourism market annually</p>
-      </div>
-      <div class="glass rounded-xl p-8 text-center">
-        <div class="text-4xl font-serif font-bold text-ocean-700 mb-2">21</div>
-        <p class="text-ocean-600/70 text-sm">Spanish-speaking countries worldwide</p>
-      </div>
+      <p class="text-xs text-ocean-600 dark:text-ocean-300 text-center mt-5">
+        Sources: company announcements, SEC filings, and domain-industry press. Shown for context only &mdash; not a
+        guarantee of future value.
+      </p>
     </div>
   </div>
 </section>

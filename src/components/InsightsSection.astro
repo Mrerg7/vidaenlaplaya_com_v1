@@ -1,0 +1,59 @@
+---
+const posts = [
+  {
+    href: '/insights/how-premium-domains-are-valued/',
+    title: 'How Premium Domain Names Are Valued',
+    excerpt:
+      'Length, extension, keyword demand, brandability, and comparable sales — the factors that move a .com from four figures into six.',
+    tag: 'Valuation',
+  },
+  {
+    href: '/insights/coastal-lifestyle-domains/',
+    title: 'Why Coastal &amp; Lifestyle Domains Command a Premium',
+    excerpt:
+      'Beach, travel, and wellness brands compete for the same few memorable names. Here is why descriptive coastal .coms stay scarce.',
+    tag: 'Market Trends',
+  },
+  {
+    href: '/insights/how-to-buy-a-domain-with-escrow/',
+    title: 'How to Buy a Domain Name Securely with Escrow',
+    excerpt:
+      'A step-by-step walkthrough of a safe domain purchase: offer, agreement, escrow funding, auth-code transfer, and handover.',
+    tag: 'Buyer Guide',
+  },
+];
+---
+
+<section id="insights" class="py-20 sm:py-24 px-4 sm:px-6 scroll-mt-24">
+  <div class="max-w-5xl mx-auto">
+    <div class="accent-line mb-8 reveal"></div>
+    <h2 class="section-title text-center mb-6 reveal">Insights for Serious Buyers</h2>
+    <p class="text-lg text-ocean-600 dark:text-ocean-300 text-center max-w-2xl mx-auto mb-12 reveal">
+      Short, practical guides on domain valuation, coastal brand strategy, and secure acquisition.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {posts.map((p, i) => (
+        <a
+          href={p.href}
+          data-track={`insight-${i + 1}`}
+          class="glass rounded-2xl p-6 flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-ocean-900/10 reveal dark:hover:shadow-black/40"
+        >
+          <span class="pill self-start mb-4">{p.tag}</span>
+          <h3 class="font-serif text-lg font-semibold text-ocean-900 dark:text-white mb-2" set:html={p.title} />
+          <p class="text-sm text-ocean-700 dark:text-ocean-300 leading-relaxed flex-1" set:html={p.excerpt} />
+          <span class="mt-4 text-sm font-semibold text-ocean-700 dark:text-ocean-200 inline-flex items-center gap-1">
+            Read the guide
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <p class="text-center mt-8">
+      <a href="/insights/" data-track="insights-all" class="cta-secondary px-6 py-3 text-sm">
+        View all insights
+      </a>
+    </p>
+  </div>
+</section>

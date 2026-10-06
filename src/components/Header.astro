@@ -1,13 +1,62 @@
-<header class="fixed top-0 left-0 right-0 z-50 glass">
-  <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-    <a href="/" class="text-ocean-800 font-serif text-xl font-semibold tracking-tight hover:text-ocean-600 transition-colors">
-      VidaEnLaPlaya<span class="text-sand-500">.com</span>
+<header id="site-nav" class="sticky top-0 z-50 glass transition-shadow">
+  <nav aria-label="Primary" class="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+    <a href="/" class="flex items-center min-w-0 rounded-lg text-ocean-800 dark:text-ocean-100 font-serif text-lg sm:text-xl font-semibold tracking-tight hover:text-ocean-600 dark:hover:text-ocean-300 transition-colors">
+      <span class="truncate">VidaEnLaPlaya<span class="text-sand-700 dark:text-sand-400">.com</span></span>
     </a>
-    <a
-      href="mailto:sales@desertrich.com"
-      class="cta-primary px-5 py-2.5 text-sm"
-    >
-      Inquire
-    </a>
+
+    <!-- Desktop nav (internal linking) -->
+    <div class="hidden lg:flex items-center gap-6 text-sm font-medium">
+      <a href="/#meaning" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">The Meaning</a>
+      <a href="/#why" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">Why Premium</a>
+      <a href="/#opportunity" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">Opportunities</a>
+      <a href="/#value" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">Market Value</a>
+      <a href="/#faq" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">FAQ</a>
+      <a href="/insights/" class="text-ocean-700 hover:text-ocean-900 dark:text-ocean-300 dark:hover:text-white transition-colors py-3">Insights</a>
+    </div>
+
+    <div class="flex items-center gap-2 shrink-0">
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle dark mode"
+        class="w-12 h-12 inline-flex items-center justify-center rounded-xl border border-ocean-200 text-ocean-700 hover:bg-ocean-50 transition-all dark:border-ocean-800 dark:text-ocean-300 dark:hover:bg-abyss-900"
+      >
+        <svg class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
+        <svg class="w-5 h-5 dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+        </svg>
+      </button>
+
+      <a
+        href="/#offer"
+        data-track="nav-make-offer"
+        class="hidden sm:inline-flex items-center px-4 lg:px-5 py-2.5 min-h-[48px] text-sm font-semibold rounded-xl border border-ocean-300 text-ocean-700 hover:bg-ocean-50 transition-all dark:border-ocean-700 dark:text-ocean-200 dark:hover:bg-abyss-900"
+      >
+        Make an Offer
+      </a>
+
+      <a
+        href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20VidaEnLaPlaya.com"
+        data-track="nav-inquire"
+        class="cta-primary px-4 lg:px-6 py-2.5 text-sm"
+      >
+        Inquire
+      </a>
+
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="lg:hidden w-12 h-12 inline-flex items-center justify-center rounded-xl text-ocean-700 hover:bg-ocean-50 transition-all dark:text-ocean-300 dark:hover:bg-abyss-900"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
   </nav>
 </header>

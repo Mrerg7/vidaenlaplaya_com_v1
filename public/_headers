@@ -1,19 +1,36 @@
-/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-
-/*.html
-  X-Robots-Tag: index, follow
-
+# Prevent indexing of duplicate / canonical-variant URLs
+/index.html
+  X-Robots-Tag: noindex
+/*/index.html
+  X-Robots-Tag: noindex
+/404.html
+  X-Robots-Tag: noindex
 /sitemap-*.xml
   Content-Type: application/xml; charset=utf-8
   X-Robots-Tag: noindex
 
-/index.html
-  X-Robots-Tag: noindex
+# Global security + performance headers (Workers Static Assets, free plan)
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), interest-cohort=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://imagedelivery.net; connect-src 'self' https://cloudflareinsights.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self' mailto:
+  Cross-Origin-Opener-Policy: same-origin-allow-popups
 
-/index.html/
-  X-Robots-Tag: noindex
+# Immutable caching for hashed build assets (Vite / Astro output)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+/favicon.svg
+  Cache-Control: public, max-age=86400
+/media/*
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
 
-/404.html
-  X-Robots-Tag: noindex
+# HTML: always revalidate so deploys are instant
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate

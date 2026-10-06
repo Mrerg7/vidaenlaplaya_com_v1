@@ -1,0 +1,101 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import StructuredData from '../components/StructuredData.astro';
+
+const props = Astro.props as Record<string, any>;
+const fm = props.frontmatter ?? props;
+const title: string = props.title ?? fm.title;
+const description: string = props.description ?? fm.description;
+const pubDate: Date = props.pubDate ? new Date(props.pubDate) : new Date(fm.pubDate);
+const category: string = props.category ?? fm.category ?? 'Insights';
+const siteUrl = 'https://vidaenlaplaya.com';
+const canonicalPath = Astro.url.pathname;
+const url = new URL(canonicalPath.endsWith('/') ? canonicalPath : `${canonicalPath}/`, siteUrl).href;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Article',
+      headline: title,
+      description,
+      url,
+      datePublished: pubDate.toISOString(),
+      dateModified: pubDate.toISOString(),
+      inLanguage: 'en-US',
+      author: { '@type': 'Organization', name: 'Desert Rich', email: 'sales@desertrich.com' },
+      publisher: { '@type': 'Organization', name: 'Desert Rich', url: `${siteUrl}/` },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'VidaEnLaPlaya.com', item: `${siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Insights', item: `${siteUrl}/insights/` },
+        { '@type': 'ListItem', position: 3, name: title, item: url },
+      ],
+    },
+  ],
+};
+---
+
+<BaseLayout title={`${title} | VidaEnLaPlaya Insights`} description={description}>
+  <StructuredData slot="head" schema={schema} />
+
+  <article class="py-12 sm:py-16 px-4 sm:px-6">
+    <div class="max-w-3xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="text-sm text-ocean-600 dark:text-ocean-300 mb-8">
+        <ol class="flex flex-wrap items-center gap-2">
+          <li><a href="/" class="hover:text-ocean-900 dark:hover:text-white py-2 inline-block">VidaEnLaPlaya.com</a></li>
+          <li aria-hidden="true">/</li>
+          <li><a href="/insights/" class="hover:text-ocean-900 dark:hover:text-white py-2 inline-block">Insights</a></li>
+          <li aria-hidden="true">/</li>
+          <li class="text-ocean-900 dark:text-white truncate max-w-[14rem]">{title}</li>
+        </ol>
+      </nav>
+
+      <header class="mb-10">
+        <span class="pill">{category.toUpperCase()}</span>
+        <h1 class="section-title mt-4 mb-4">{title}</h1>
+        <p class="text-lg text-ocean-600 dark:text-ocean-300 leading-relaxed">{description}</p>
+        <p class="text-sm text-ocean-600 dark:text-ocean-300 mt-4">
+          <time datetime={pubDate.toISOString().slice(0, 10)}>
+            {pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          &middot; 5 min read
+        </p>
+      </header>
+
+      <div class="prose-vida">
+        <slot />
+      </div>
+
+      <!-- Internal CTA -->
+      <aside class="mt-12 rounded-3xl border border-ocean-200 dark:border-ocean-800 p-6 sm:p-8 text-center bg-ocean-50/60 dark:bg-abyss-900">
+        <h2 class="font-serif text-2xl font-bold text-ocean-900 dark:text-white mb-2">
+          Interested in VidaEnLaPlaya.com?
+        </h2>
+        <p class="text-ocean-600 dark:text-ocean-300 mb-5 text-base">
+          Asking $75,000 USD &mdash; serious offers considered, secure escrow transfer, response within 24 hours.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center">
+          <a href="/#offer" data-track="insight-make-offer" class="cta-accent px-6 py-3 text-base">Make an Offer</a>
+          <a
+            href="mailto:sales@desertrich.com?subject=Acquisition%20Inquiry%20-%20VidaEnLaPlaya.com"
+            data-track="insight-inquire"
+            class="cta-secondary px-6 py-3 text-base"
+          >
+            Contact Agent
+          </a>
+        </div>
+      </aside>
+
+      <p class="mt-8 text-sm">
+        <a href="/insights/" class="font-semibold text-ocean-800 dark:text-ocean-200 underline underline-offset-4 hover:text-ocean-600 py-2 inline-flex items-center gap-1">
+          <span aria-hidden="true">&larr;</span> Back to all insights
+        </a>
+      </p>
+    </div>
+  </article>
+</BaseLayout>

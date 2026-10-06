@@ -1,29 +1,78 @@
-<section class="py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <div class="accent-line mb-8"></div>
-    <h2 class="font-serif text-4xl sm:text-5xl font-bold text-ocean-900 text-center mb-16">
-      Acquisition Perspective
-    </h2>
+---
+const steps = [
+  {
+    title: '1. Inquire or make an offer',
+    body: 'Email sales@desertrich.com or use the offer form. Every serious inquiry receives a personal response within 24 hours.',
+  },
+  {
+    title: '2. Agree on terms',
+    body: 'Price, timeline, and any confidentiality terms are confirmed in writing before anything moves forward.',
+  },
+  {
+    title: '3. Fund through escrow',
+    body: 'Payment is held by Escrow.com (or your attorney/escrow service). Funds stay secure until the transfer is complete.',
+  },
+  {
+    title: '4. Receive the domain',
+    body: 'The domain is pushed or transferred by auth code, typically within 1&ndash;3 business days after funds clear. Then it is yours.',
+  },
+];
+---
 
-    <div class="space-y-6 text-lg text-ocean-700/80 leading-relaxed">
-      <p>
-        VidaEnLaPlaya.com is positioned as a <strong class="text-ocean-800 font-semibold">premium strategic acquisition</strong>, not a commodity domain. It offers immediate brand authority and long-term equity for the right buyer — whether a developer launching a major coastal project, a lifestyle brand seeking an ownable global phrase, or an investor adding a high-quality digital asset to their portfolio.
-      </p>
+<section id="acquire" class="py-20 sm:py-24 px-4 sm:px-6 scroll-mt-24">
+  <div class="max-w-5xl mx-auto">
+    <div class="accent-line mb-8 reveal"></div>
+    <h2 class="section-title text-center mb-6 reveal">How to Acquire VidaEnLaPlaya.com</h2>
+    <p class="text-lg text-ocean-600 dark:text-ocean-300 text-center max-w-2xl mx-auto mb-14 reveal">
+      A simple, protected four-step process &mdash; no account, no fees, no obligation to start.
+    </p>
 
-      <p>
-        Serious inquiries from qualified buyers, brand strategists, and visionaries are welcome. Pricing reflects the domain's rarity, global linguistic strength, emotional resonance, and proven market demand for assets of this caliber.
-      </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 mb-14">
+      {steps.map((s, i) => (
+        <div class="glass rounded-2xl p-6 reveal">
+          <div class="w-9 h-9 rounded-full bg-ocean-700 text-white flex items-center justify-center font-bold mb-4 dark:bg-ocean-500 dark:text-abyss-950">
+            {i + 1}
+          </div>
+          <h3 class="font-serif text-lg font-semibold text-ocean-900 dark:text-white mb-2">{s.title}</h3>
+          <p class="text-sm text-ocean-700 dark:text-ocean-300 leading-relaxed" set:html={s.body} />
+        </div>
+      ))}
+    </div>
 
-      <div class="bg-ocean-50/70 border border-ocean-200 rounded-2xl p-10 my-12 text-center">
-        <p class="font-serif text-2xl text-ocean-800 font-semibold italic mb-4">
-          "This is a rare opportunity to own the definitive expression of beach life."
-        </p>
-        <p class="text-ocean-600/70">
-          Inquire today to begin a confidential discussion.
-        </p>
+    <!-- Trust signals -->
+    <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-14">
+      <div class="rounded-2xl border border-ocean-200 dark:border-ocean-800 p-6 text-center reveal">
+        <svg class="w-7 h-7 mx-auto text-ocean-600 dark:text-ocean-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+        <h3 class="font-semibold text-ocean-900 dark:text-white mb-1">Escrow.com protected</h3>
+        <p class="text-sm text-ocean-600 dark:text-ocean-300">Funds are held securely until the transfer is complete.</p>
       </div>
+      <div class="rounded-2xl border border-ocean-200 dark:border-ocean-800 p-6 text-center reveal">
+        <svg class="w-7 h-7 mx-auto text-ocean-600 dark:text-ocean-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+        <h3 class="font-semibold text-ocean-900 dark:text-white mb-1">SSL + registrar security</h3>
+        <p class="text-sm text-ocean-600 dark:text-ocean-300">This site is HTTPS-only; the domain is registered at a major accredited registrar.</p>
+      </div>
+      <div class="rounded-2xl border border-ocean-200 dark:border-ocean-800 p-6 text-center reveal">
+        <svg class="w-7 h-7 mx-auto text-ocean-600 dark:text-ocean-400 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+        <h3 class="font-semibold text-ocean-900 dark:text-white mb-1">24-hour response</h3>
+        <p class="text-sm text-ocean-600 dark:text-ocean-300">Confidential, direct conversations with the decision-maker.</p>
+      </div>
+    </div>
 
-      <p class="text-sm text-ocean-500/70 italic text-center">
+    <!-- Acquisition perspective -->
+    <div class="space-y-6 text-lg text-ocean-700 dark:text-ocean-200 leading-relaxed max-w-4xl mx-auto">
+      <p class="reveal">
+        VidaEnLaPlaya.com is positioned as a <strong class="text-ocean-800 dark:text-white font-semibold">premium strategic acquisition</strong>,
+        not a commodity domain. It offers immediate brand authority and long-term equity for the right buyer &mdash; whether a
+        developer launching a major coastal project, a lifestyle brand seeking an ownable global phrase, or an investor adding
+        a high-quality digital asset to their portfolio.
+      </p>
+      <div class="bg-ocean-50/80 dark:bg-abyss-800 border border-ocean-200 dark:border-ocean-800 rounded-2xl p-8 sm:p-10 my-10 text-center reveal">
+        <p class="font-serif text-xl sm:text-2xl text-ocean-800 dark:text-white font-semibold italic mb-4">
+          &ldquo;This is a rare opportunity to own the definitive expression of beach life.&rdquo;
+        </p>
+        <p class="text-ocean-600 dark:text-ocean-300">Inquire today to begin a confidential discussion.</p>
+      </div>
+      <p class="text-sm text-ocean-600 dark:text-ocean-300 italic text-center">
         Comparable market analysis and acquisition terms available upon qualified inquiry. Serious buyers only.
       </p>
     </div>

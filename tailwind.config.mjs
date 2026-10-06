@@ -1,6 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
@@ -37,6 +38,11 @@ export default {
         gold: {
           400: '#d4a853',
           500: '#c4963a',
+        },
+        abyss: {
+          800: '#0d2029',
+          900: '#08161d',
+          950: '#040e13',
         },
       },
     },

@@ -1,0 +1,39 @@
+---
+export interface Props {
+  faqs: { q: string; a: string }[];
+}
+
+const { faqs } = Astro.props;
+---
+
+<section id="faq" class="py-20 sm:py-24 px-4 sm:px-6 bg-ocean-50/60 dark:bg-abyss-900 scroll-mt-24">
+  <div class="max-w-3xl mx-auto">
+    <div class="accent-line mb-8 reveal"></div>
+    <h2 class="section-title text-center mb-6 reveal">Frequently Asked Questions</h2>
+    <p class="text-center text-ocean-600 dark:text-ocean-300 max-w-2xl mx-auto mb-12 reveal">
+      Everything buyers ask before acquiring VidaEnLaPlaya.com.
+    </p>
+
+    <div class="space-y-4">
+      {faqs.map((f, i) => (
+        <details
+          class="group bg-white border border-ocean-200 rounded-2xl px-5 sm:px-6 open:shadow-sm transition-all reveal dark:bg-abyss-950 dark:border-ocean-800"
+        >
+          <summary class="cursor-pointer list-none py-4 min-h-[48px] flex items-start justify-between gap-4 text-base sm:text-lg font-semibold text-ocean-900 dark:text-white">
+            <span>{f.q}</span>
+            <span class="shrink-0 mt-1 text-ocean-600 dark:text-ocean-300 transition-transform group-open:rotate-45" aria-hidden="true">+</span>
+          </summary>
+          <p class="pb-5 pr-6 text-ocean-700 dark:text-ocean-300 leading-relaxed text-[15px] sm:text-base">{f.a}</p>
+        </details>
+      ))}
+    </div>
+
+    <p class="text-center text-sm text-ocean-600 dark:text-ocean-300 mt-8">
+      Still have questions?
+      <a href="mailto:sales@desertrich.com?subject=Question%20about%20VidaEnLaPlaya.com" data-track="faq-email" class="font-semibold text-ocean-800 dark:text-ocean-200 underline underline-offset-4 hover:text-ocean-600 py-2">
+        Email sales@desertrich.com
+      </a>
+      &mdash; response within 24 hours.
+    </p>
+  </div>
+</section>

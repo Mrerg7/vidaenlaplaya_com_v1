@@ -1,0 +1,88 @@
+---
+const buyNowMailto =
+  'mailto:sales@desertrich.com?subject=Buy%20Now%20%E2%80%94%20VidaEnLaPlaya.com%20via%20Escrow&body=Hi%2C%0A%0AI%27d%20like%20to%20proceed%20with%20a%20secure%20Escrow.com%20transaction%20for%20VidaEnLaPlaya.com.%20Please%20send%20next%20steps.%0A%0AName%3A%20%0A';
+const agentMailto =
+  'mailto:sales@desertrich.com?subject=Questions%20about%20VidaEnLaPlaya.com&body=Hi%2C%0A%0AI%20have%20a%20question%20about%20VidaEnLaPlaya.com%3A%20%0A%0AName%3A%20%0A';
+
+const useOptions = [
+  'Coastal real estate / development',
+  'Hospitality / resorts',
+  'Travel / media / content',
+  'Lifestyle / fashion',
+  'Wellness / retreats',
+  'Investment / portfolio',
+  'Other',
+];
+---
+
+<section id="offer" class="py-20 sm:py-24 px-4 sm:px-6 scroll-mt-24">
+  <div class="max-w-3xl mx-auto">
+    <div class="glass rounded-3xl p-6 sm:p-10 reveal">
+      <div class="text-center mb-8">
+        <span class="pill">ONE-OF-ONE ASSET</span>
+        <h2 class="section-title mt-4 text-[1.75rem] sm:text-4xl">Make your move on VidaEnLaPlaya.com</h2>
+        <p class="mt-3 text-ocean-600 dark:text-ocean-300 text-base sm:text-lg">
+          Asking <strong class="text-ocean-900 dark:text-white">$75,000 USD</strong> &mdash; serious offers considered.
+          No account, no fees, no obligation: your details open a pre-filled secure email, and nothing is stored on a server.
+        </p>
+      </div>
+
+      <form id="offer-form" class="space-y-4" novalidate>
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="f-name" class="block text-sm font-semibold mb-1.5 text-ocean-900 dark:text-white">Name</label>
+            <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" class="field" />
+          </div>
+          <div>
+            <label for="f-email" class="block text-sm font-semibold mb-1.5 text-ocean-900 dark:text-white">Email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@company.com" class="field" />
+          </div>
+        </div>
+
+        <div class="grid sm:grid-cols-2 gap-4">
+          <div>
+            <label for="f-amount" class="block text-sm font-semibold mb-1.5 text-ocean-900 dark:text-white">Offer amount (USD)</label>
+            <input id="f-amount" name="amount" type="text" inputmode="numeric" placeholder="e.g. 75,000" class="field" />
+          </div>
+          <div>
+            <label for="f-use" class="block text-sm font-semibold mb-1.5 text-ocean-900 dark:text-white">Intended use</label>
+            <select id="f-use" name="use" class="field">
+              {useOptions.map((o) => <option>{o}</option>)}
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label for="f-msg" class="block text-sm font-semibold mb-1.5 text-ocean-900 dark:text-white">
+            Message <span class="font-normal text-ocean-600 dark:text-ocean-300">(optional)</span>
+          </label>
+          <textarea id="f-msg" name="message" rows="3" placeholder="Timeline, questions, or terms…" class="field"></textarea>
+        </div>
+
+        <p id="form-error" class="hidden text-sm text-red-600 font-medium" role="alert">
+          Please add your name and a valid email so we can reply within 24 hours.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-3 pt-2">
+          <button
+            type="submit"
+            data-track="offer-submit"
+            class="flex-1 cta-accent px-6 py-4 text-base"
+          >
+            Make an Offer
+          </button>
+          <a href={buyNowMailto} data-track="offer-buy-now" class="flex-1 cta-primary px-6 py-4 text-base">
+            Buy Now via Escrow
+          </a>
+          <a href={agentMailto} data-track="offer-contact" class="flex-1 cta-secondary px-6 py-4 text-base">
+            Contact Agent
+          </a>
+        </div>
+
+        <p class="text-xs text-ocean-600 dark:text-ocean-300 text-center pt-1">
+          Confidential &bull; No obligation &bull; Escrow.com recommended &bull; Response within 24 hours
+        </p>
+      </form>
+    </div>
+  </div>
+</section>

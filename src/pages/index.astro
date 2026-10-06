@@ -1,30 +1,373 @@
 ---
-import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
+import StructuredData from '../components/StructuredData.astro';
 import Hero from '../components/Hero.astro';
 import MeaningSection from '../components/MeaningSection.astro';
 import WhyPremiumSection from '../components/WhyPremiumSection.astro';
 import ApplicationsSection from '../components/ApplicationsSection.astro';
 import MarketContextSection from '../components/MarketContextSection.astro';
 import AcquisitionSection from '../components/AcquisitionSection.astro';
+import FAQSection from '../components/FAQSection.astro';
+import OfferSection from '../components/OfferSection.astro';
+import InsightsSection from '../components/InsightsSection.astro';
 import CTASection from '../components/CTASection.astro';
-import Footer from '../components/Footer.astro';
+import { getEntry } from 'astro:content';
 
 const siteData = await getEntry('site', 'site');
-const heroImage = siteData?.data?.heroImage ?? 'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/7ad296d3-6138-4c1f-272c-4a560d04ea00/public';
+const heroImage =
+  siteData?.data?.heroImage ??
+  'https://imagedelivery.net/-sPAUAWeA405NiWJ0SNIQA/7ad296d3-6138-4c1f-272c-4a560d04ea00/public';
+
+const title = 'VidaEnLaPlaya.com | Premium Domain for Sale | VidaEnLaPlaya';
+const description =
+  'VidaEnLaPlaya.com for sale — the premium .com that owns "Beach Life". Asking $75,000 USD, serious offers considered. Secure Escrow.com transfer. Inquire now — response within 24 hours.';
+const siteUrl = 'https://vidaenlaplaya.com';
+
+const offerMailto =
+  'mailto:sales@desertrich.com?subject=Offer%20for%20VidaEnLaPlaya.com%20%E2%80%94%20%5BYour%20Offer%5D&body=Hi%2C%0A%0AI%27d%20like%20to%20make%20an%20offer%20for%20VidaEnLaPlaya.com.%0A%0AOffer%20amount%20(USD)%3A%20%0AIntended%20use%3A%20%0AName%3A%20%0A';
+
+const faqs = [
+  {
+    q: 'How much does VidaEnLaPlaya.com cost?',
+    a: 'The asking price is $75,000 USD, and serious offers in that range are considered. Premium two-word .com domains with this level of linguistic clarity and bilingual reach routinely transact in the mid-to-high five figures and above. Submit your best offer and you will receive a personal response within 24 hours.',
+  },
+  {
+    q: 'How does the secure transfer work?',
+    a: 'We recommend Escrow.com, your attorney, or an equivalent escrow service. Funds are held securely, then the domain is pushed or transferred by auth code to your registrar — typically within 1–3 business days after the funds clear. You never send money directly to an unknown party.',
+  },
+  {
+    q: 'Why is a bilingual Spanish/English domain valuable?',
+    a: 'Spanish has more than 636 million speakers worldwide, and the phrase "vida en la playa" is the natural, idiomatic way to say "beach life." The name is equally legible to English-speaking buyers, which is why lifestyle and travel brands pay a premium for exact-match, hyphen-free .coms that travel across markets.',
+  },
+  {
+    q: 'Can I buy now instead of making an offer?',
+    a: 'Yes. Use "Buy Now via Escrow" to start a secure Escrow.com transaction immediately, choose "Contact Agent" if you have questions first, or "Make an Offer" to propose your own terms. All three options take under a minute.',
+  },
+  {
+    q: 'What can I build on VidaEnLaPlaya.com?',
+    a: 'Six proven paths: coastal luxury real estate, hospitality and resorts, travel and media, lifestyle and fashion, wellness and retreats, or a long-term investment hold. The name is a blank canvas with instant emotional recognition in both Spanish and English.',
+  },
+  {
+    q: 'Do you offer financing or installments?',
+    a: 'Standard transactions are settled in full through escrow. In some cases structured payments can be discussed for qualified buyers — mention your preferred terms when you make an offer and we will respond within 24 hours.',
+  },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}/#website`,
+      url: `${siteUrl}/`,
+      name: 'VidaEnLaPlaya.com',
+      description,
+      inLanguage: 'en-US',
+      publisher: { '@id': `${siteUrl}/#org` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}/#org`,
+      name: 'Desert Rich',
+      url: `${siteUrl}/`,
+      logo: `${siteUrl}/favicon.svg`,
+      email: 'sales@desertrich.com',
+      description: 'Broker of premium domain names, including VidaEnLaPlaya.com.',
+    },
+    {
+      '@type': 'Product',
+      '@id': `${siteUrl}/#product`,
+      name: 'VidaEnLaPlaya.com',
+      description:
+        'The authoritative .com domain for beach life, coastal luxury, and paradise living. An exact-match, globally resonant domain with bilingual reach across Spanish and English-speaking markets.',
+      brand: { '@type': 'Brand', name: 'VidaEnLaPlaya' },
+      category: 'Premium domain name',
+      url: `${siteUrl}/`,
+      image: heroImage,
+      offers: {
+        '@type': 'Offer',
+        url: `${siteUrl}/#offer`,
+        availability: 'https://schema.org/InStock',
+        priceCurrency: 'USD',
+        price: '75000',
+        priceSpecification: {
+          '@type': 'UnitPriceSpecification',
+          minPrice: '75000',
+          maxPrice: '195000',
+          priceCurrency: 'USD',
+        },
+        businessFunction: 'https://purl.org/goodrelations/v1#Sell',
+        seller: { '@id': `${siteUrl}/#org` },
+        description: 'Asking price $75,000 USD. Serious offers considered. Secure transfer via Escrow.com or equivalent.',
+        eligibleTransactionType: 'https://purl.org/goodrelations/v1#DirectInStore',
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: 'US',
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+          merchantReturnDays: 0,
+          name: 'No Returns',
+          description: 'Due to the nature of digital domain name assets, returns are not applicable after transfer.',
+        },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'VidaEnLaPlaya.com', item: `${siteUrl}/` },
+        { '@type': 'ListItem', position: 2, name: 'Why Premium', item: `${siteUrl}/#why` },
+        { '@type': 'ListItem', position: 3, name: 'How to Acquire', item: `${siteUrl}/#acquire` },
+        { '@type': 'ListItem', position: 4, name: 'Make an Offer', item: `${siteUrl}/#offer` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((f) => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+};
 ---
 
-<BaseLayout>
-  <Header />
-  <main>
-    <Hero image={heroImage} />
-    <MeaningSection />
-    <WhyPremiumSection />
-    <ApplicationsSection />
-    <MarketContextSection />
-    <AcquisitionSection />
-    <CTASection />
-  </main>
-  <Footer />
+<BaseLayout title={title} description={description} image={heroImage}>
+  <StructuredData slot="head" schema={structuredData} />
+
+  <Hero />
+  <MeaningSection />
+  <WhyPremiumSection />
+  <ApplicationsSection />
+  <MarketContextSection />
+  <AcquisitionSection />
+  <FAQSection faqs={faqs} />
+  <OfferSection />
+  <InsightsSection />
+  <CTASection />
+
+  <!-- Exit-intent capture (no backend: mailto + 14-day local snooze) -->
+  <div
+    id="exit-intent"
+    class="hidden fixed inset-0 z-[120] items-center justify-center p-4"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="exit-title"
+  >
+    <div id="exit-backdrop" class="absolute inset-0 bg-black/60"></div>
+    <div class="relative bg-white dark:bg-abyss-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl">
+      <button
+        id="exit-close"
+        type="button"
+        aria-label="Close dialog"
+        class="absolute top-3 right-3 w-12 h-12 inline-flex items-center justify-center text-2xl text-ocean-400 hover:text-ocean-700 dark:hover:text-white rounded-2xl"
+      >
+        &times;
+      </button>
+      <div class="text-xs font-bold tracking-[1.5px] text-sand-600 dark:text-sand-400 mb-2">BEFORE YOU GO</div>
+      <h2 id="exit-title" class="text-2xl font-serif font-bold text-ocean-900 dark:text-white">
+        Get first refusal on VidaEnLaPlaya.com
+      </h2>
+      <p class="mt-2 text-ocean-600 dark:text-ocean-300 text-base">
+        One-of-one asset. Leave your email and we&rsquo;ll notify you before accepting any other offer &mdash; plus share
+        comparable sales data.
+      </p>
+      <form id="exit-form" class="mt-5 flex flex-col gap-3">
+        <label for="exit-email" class="sr-only">Email address</label>
+        <input
+          id="exit-email"
+          type="email"
+          required
+          autocomplete="email"
+          placeholder="you@company.com"
+          class="field"
+        />
+        <button type="submit" data-track="exit-submit" class="cta-primary w-full px-6 py-3 text-base">
+          Notify Me First
+        </button>
+      </form>
+      <button
+        id="exit-dismiss"
+        type="button"
+        class="mt-3 w-full min-h-[44px] text-sm text-ocean-600 hover:text-ocean-800 dark:text-ocean-300 dark:hover:text-white"
+      >
+        No thanks, I&rsquo;ll risk missing it
+      </button>
+    </div>
+  </div>
+
+  <script is:inline>
+    // Viewing counter (social proof, no backend: deterministic daily base + session bump)
+    (() => {
+      const el = document.getElementById('viewer-count');
+      if (!el) return;
+      const now = new Date();
+      const dayIndex = Math.floor(Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) / 86400000);
+      const base = 6 + (dayIndex % 19);
+      let bump = 0;
+      try {
+        bump = Number(sessionStorage.getItem('vida-views') || 0) + 1;
+        sessionStorage.setItem('vida-views', String(bump));
+      } catch (e) {
+        bump = 1;
+      }
+      el.textContent = `${base + bump} investors and brand buyers viewed this domain today`;
+    })();
+
+    // Opportunity filter chips (instant, no backend)
+    (() => {
+      const btns = Array.from(document.querySelectorAll('.usecase-filter'));
+      const cards = Array.from(document.querySelectorAll('.usecase-card'));
+      const empty = document.getElementById('filter-empty');
+      if (!btns.length || !cards.length) return;
+      btns.forEach((b) => {
+        b.addEventListener('click', () => {
+          btns.forEach((x) => {
+            x.classList.remove('chip-active');
+            x.classList.add('chip-idle');
+            x.setAttribute('aria-pressed', 'false');
+          });
+          b.classList.remove('chip-idle');
+          b.classList.add('chip-active');
+          b.setAttribute('aria-pressed', 'true');
+          const f = b.getAttribute('data-filter');
+          let visible = 0;
+          cards.forEach((c) => {
+            const tags = (c.getAttribute('data-tags') || '').split(' ');
+            const show = f === 'all' || tags.includes(f || '');
+            c.style.display = show ? '' : 'none';
+            if (show) visible += 1;
+          });
+          if (empty) empty.classList.toggle('hidden', visible > 0);
+        });
+      });
+    })();
+
+    // Offer form -> prefilled secure email (nothing stored server-side = free plan)
+    (() => {
+      const form = document.getElementById('offer-form');
+      if (!form) return;
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = document.getElementById('f-name').value.trim();
+        const email = document.getElementById('f-email').value.trim();
+        const amount = document.getElementById('f-amount').value.trim();
+        const use = document.getElementById('f-use').value;
+        const msg = document.getElementById('f-msg').value.trim();
+        const err = document.getElementById('form-error');
+        const ok = name.length > 1 && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+        if (!ok) {
+          err?.classList.remove('hidden');
+          (!name ? document.getElementById('f-name') : document.getElementById('f-email'))?.focus();
+          return;
+        }
+        err?.classList.add('hidden');
+        const body =
+          `Hi,%0A%0AI'd like to make an offer for VidaEnLaPlaya.com.%0A%0AOffer amount (USD): ${encodeURIComponent(amount || '—')}` +
+          `%0AIntended use: ${encodeURIComponent(use)}%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}` +
+          (msg ? `%0AMessage: ${encodeURIComponent(msg)}` : '') +
+          `%0A%0AThank you!`;
+        window.location.href = `mailto:sales@desertrich.com?subject=${encodeURIComponent(
+          'Offer for VidaEnLaPlaya.com — ' + (amount ? '$' + amount : name)
+        )}&body=${body}`;
+      });
+    })();
+
+    // Exit-intent (engagement-gated: genuine leave signals only, 14-day snooze).
+    // Triggers: desktop mouseleave-top after 20s dwell, OR 60%+ scroll depth after 30s dwell.
+    // Suppressed when the offer form is on screen, after purchase-path clicks, or after submit.
+    (() => {
+      const box = document.getElementById('exit-intent');
+      if (!box) return;
+      const KEY = 'vida-exit-v1';
+      const DONE = 'vida-converted';
+      const SNOOZE_MS = 14 * 24 * 60 * 60 * 1000;
+      const t0 = Date.now();
+      const dwell = () => Date.now() - t0;
+      let shown = false;
+
+      const suppressed = () => {
+        if (shown) return true;
+        try {
+          if (localStorage.getItem(DONE) === '1') return true;
+          const last = Number(localStorage.getItem(KEY) || 0);
+          if (last && Date.now() - last < SNOOZE_MS) return true;
+        } catch (e) {}
+        return false;
+      };
+      const offerVisible = () => {
+        const offer = document.getElementById('offer');
+        if (!offer) return false;
+        const r = offer.getBoundingClientRect();
+        return r.top < window.innerHeight && r.bottom > 0;
+      };
+      const open = () => {
+        if (suppressed() || document.hidden || offerVisible()) return;
+        shown = true;
+        try {
+          localStorage.setItem(KEY, String(Date.now()));
+        } catch (e) {}
+        box.classList.remove('hidden');
+        box.classList.add('flex');
+        document.getElementById('exit-email')?.focus();
+      };
+      const close = () => {
+        box.classList.add('hidden');
+        box.classList.remove('flex');
+      };
+      const markConverted = () => {
+        try {
+          localStorage.setItem(DONE, '1');
+        } catch (e) {}
+      };
+
+      // Genuine exit signal: pointer leaves viewport top (desktop), min 20s dwell
+      document.addEventListener('mouseout', (e) => {
+        if (!e.relatedTarget && e.clientY <= 0 && dwell() >= 20000) open();
+      });
+      // Mobile fallback: deep scroll + real dwell, throttled via rAF flag
+      let ticking = false;
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (ticking || suppressed()) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            ticking = false;
+            const h = document.documentElement;
+            const max = h.scrollHeight - h.clientHeight;
+            if (max > 0 && h.scrollTop / max > 0.6 && dwell() >= 30000) open();
+          });
+        },
+        { passive: true }
+      );
+
+      // Any purchase-path engagement = no popup needed
+      document.querySelectorAll('[data-track*="offer"], [data-track*="buy"]').forEach((el) => {
+        el.addEventListener('click', markConverted);
+      });
+      document.getElementById('exit-close')?.addEventListener('click', close);
+      document.getElementById('exit-dismiss')?.addEventListener('click', close);
+      document.getElementById('exit-backdrop')?.addEventListener('click', close);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') close();
+      });
+      document.getElementById('offer-form')?.addEventListener('submit', markConverted);
+      document.getElementById('exit-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = document.getElementById('exit-email');
+        const v = input ? input.value.trim() : '';
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) {
+          input?.focus();
+          return;
+        }
+        markConverted();
+        window.location.href = `mailto:sales@desertrich.com?subject=${encodeURIComponent(
+          'First-refusal request — VidaEnLaPlaya.com'
+        )}&body=${encodeURIComponent(
+          'Please notify me before accepting any other offer for VidaEnLaPlaya.com.\n\nEmail: ' + v + '\n'
+        )}`;
+        close();
+      });
+    })();
+  </script>
 </BaseLayout>

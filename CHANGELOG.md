@@ -79,8 +79,24 @@ no third-party form backend).
 - Contrast fixes verified against WCAG AA (all `text-ocean-500` body copy promoted to `ocean-600`/`ocean-300`,
   footer copy to `ocean-400`, `white/60` → `white/75`).
 - Screenshots checked at 390×844 in light and dark (hero, why, value, offer, FAQ).
-- Still manual post-deploy: iOS Safari + Android Chrome pass, `mailto:` CTAs, exit-intent once/session, enable the
-  Cloudflare Web Analytics token, resubmit the sitemap in Search Console.
+
+### Post-deploy verification (https://vidaenlaplaya.com)
+- Lighthouse mobile, live: **performance 99, accessibility 100, SEO 100, best-practices 96** (FCP 1.7s, LCP 1.7s,
+  TBT 0ms, CLS 0.011). Best-practices is held at 96 only by the zone-level Cloudflare beacon being unreachable from
+  the test machine; no site-owned console errors.
+- LCP optimization: `<link rel="preload" as="image" imagesrcset imagesizes fetchpriority="high">` + new
+  `hero-640.webp` (40KB) responsive step cut live LCP from 2.9s → 1.7s.
+- Headers confirmed live: HSTS preload, CSP, `X-Frame-Options: DENY`, `nosniff`, Referrer-Policy, Permissions-Policy,
+  COOP; immutable cache on `/media/*`, `must-revalidate` on HTML.
+- Redirects confirmed: `www → apex 301`, `http → https 301`, `/index.html → / 301` with `X-Robots-Tag: noindex`;
+  legacy paths and `/sitemap.xml` rewrite via `_redirects`.
+- `404` returns HTTP 404; `/insights/` 200; `sitemap-0.xml` lists all 5 URLs; `robots.txt` points at the sitemap index;
+  `*.workers.dev` serves `X-Robots-Tag: noindex, nofollow`.
+- JSON-LD parses as `WebSite, Organization, Product, BreadcrumbList, FAQPage`; html-validate exit 0; 155 links, 0 broken.
+- Still manual: iOS Safari + Android Chrome pass, `mailto:` CTAs, exit-intent once/session, enable the Cloudflare Web
+  Analytics token in the dashboard (the script in `BaseLayout` stays commented until then), resubmit the sitemap in
+  Search Console.
+
 
 ### Deploy
 1. Backup: git history on `main` + Cloudflare Workers versioning for rollback.

@@ -133,6 +133,14 @@ const structuredData = {
 
 <BaseLayout title={title} description={description} image={heroImage}>
   <StructuredData slot="head" schema={structuredData} />
+  <link
+    slot="head"
+    rel="preload"
+    as="image"
+    imagesrcset="/media/hero-480.webp 480w, /media/hero-640.webp 640w, /media/hero-768.webp 768w, /media/hero-1200.webp 1200w"
+    imagesizes="(max-width: 1024px) calc(100vw - 40px), 768px"
+    fetchpriority="high"
+  />
 
   <Hero />
   <MeaningSection />
